@@ -1,0 +1,32 @@
+.entry-editor {
+    float: left;
+    width: 100%;
+    height: 500px;
+    padding: 16px 8px;
+    overflow: scroll;
+}
+
+.entry-editor  textarea {
+    float: left;
+    width: 100%;
+    resize: none;
+    height: calc(100% - 184px);
+    padding: 8px;
+    outline: none;
+    border: var(--border);
+    box-shadow: var(--boxShadow);
+}
+
+.entry-editor .sample {
+    background-repeat: repeat;
+    background-size: 50px;
+    float: left;
+    width: 100%;
+    height: 148px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border);
+    box-shadow: var(--boxShadow);
+}

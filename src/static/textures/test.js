@@ -5,7 +5,7 @@ const basename = path.basename(__filename);
 (() => {
     let rawFiles = fs.readdirSync(__dirname)
         .filter(file => {
-            return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-4) === '.ttf')
+            return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-4) === '.png')
         });
 
     let files = [];

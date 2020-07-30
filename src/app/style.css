@@ -1,0 +1,126 @@
+:root {
+	--border: 1px solid rgba(0,0,0,0.2);
+	--boxShadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+#modal-root {
+	position: relative;
+	z-index: 999;
+  }
+
+@font-face {font-family: "Architects Daughter";src: url(../static/fonts/architects_daughter.ttf);}
+@font-face {font-family: "Caveat";src: url(../static/fonts/caveat.ttf);}
+@font-face {font-family: "Cedarville Cursive";src: url(../static/fonts/cedarville_cursive.ttf);}
+@font-face {font-family: "Cookie";src: url(../static/fonts/cookie.ttf);}
+@font-face {font-family: "Dancing Script";src: url(../static/fonts/dancing_script.ttf);}
+@font-face {font-family: "Dosis";src: url(../static/fonts/dosis.ttf);}
+@font-face {font-family: "Exo2";src: url(../static/fonts/exo2.ttf);}
+@font-face {font-family: "Great Vibes";src: url(../static/fonts/great_vibes.ttf);}
+@font-face {font-family: "Homemade Apple";src: url(../static/fonts/homemade_apple.ttf);}
+@font-face {font-family: "Indie Flower";src: url(../static/fonts/indie_flower.ttf);}
+@font-face {font-family: "Kalam";src: url(../static/fonts/kalam.ttf);}
+@font-face {font-family: "Neucha";src: url(../static/fonts/neucha.ttf);}
+@font-face {font-family: "Old Standard Tt";src: url(../static/fonts/old_standard_tt.ttf);}
+@font-face {font-family: "Oswald";src: url(../static/fonts/oswald.ttf);}
+@font-face {font-family: "Parisienne";src: url(../static/fonts/parisienne.ttf);}
+@font-face {font-family: "Patrick Hand";src: url(../static/fonts/patrick_hand.ttf);}
+@font-face {font-family: "Questrial";src: url(../static/fonts/questrial.ttf);}
+@font-face {font-family: "Rajdhani";src: url(../static/fonts/rajdhani.ttf);}
+@font-face {font-family: "Raleway";src: url(../static/fonts/raleway.ttf);}
+@font-face {font-family: "Rokkitt";src: url(../static/fonts/rokkitt.ttf);}
+@font-face {font-family: "Sacremento";src: url(../static/fonts/sacremento.ttf);}
+@font-face {font-family: "Shadows Into Light";src: url(../static/fonts/shadows_into_light.ttf);}
+@font-face {font-family: "Teko";src: url(../static/fonts/teko.ttf);}
+@font-face {font-family: "Titillium Web";src: url(../static/fonts/titillium_web.ttf);}
+@font-face {font-family: "Yanone Kaffeesatz";src: url(../static/fonts/yanone_kaffeesatz.ttf);}
+@font-face {font-family: "Yellowtail";src: url(../static/fonts/yellowtail.ttf);}
+
+* {
+    box-sizing: border-box;
+}
+
+.app {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    float: left;
+    width: 100%;
+    margin: 0; padding: 0;
+}
+
+label {
+	float: left;
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	margin: 0 0 4px 0;
+}
+
+input, select, .picker {
+	float: left;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 0 16px 0;
+	padding: 0 16px;
+	cursor: pointer;
+	box-shadow: var(--boxShadow);
+	border: var(--border);
+}
+
+.row {
+	float: left;
+	width: 100%;
+	clear: none;
+}
+
+[class*="col-"] {
+	float: left;
+	width: 100%;
+}
+
+.padded {
+	padding: 0 5px;
+}
+
+@media only screen and (min-width: 640px) {
+	.col-1 {width: 16.66%;}
+	.col-2 {width: 50%;}
+	.col-3 {width: 40%;}
+	.col-4 {width: 33.33%;}
+	.col-5 {width: 33.33%;}
+	.col-6 {width: 50%;}
+	.col-7 {width: 66.66%;}
+	.col-8 {width: 66.66%;}
+	.col-9 {width: 60%;}
+	.col-10 {width: 75%;}
+	.col-11 {width: 83.33%;}
+	.col-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 960px) {
+	.col-1 {width: 8.33%;}
+	.col-2 {width: 16.66%;}
+	.col-3 {width: 25%;}
+	.col-4 {width: 33.33%;}
+	.col-5 {width: 41.66%;}
+	.col-6 {width: 50%;}
+	.col-7 {width: 58.33%;}
+	.col-8 {width: 66.66%;}
+	.col-9 {width: 75%;}
+	.col-10 {width: 83.33%;}
+	.col-11 {width: 91.66%;}
+	.col-12 {width: 100%;}
+}
+
+.app {
+	background: #999;
+	background-repeat: repeat;
+	background-size: 10px;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+}
+
