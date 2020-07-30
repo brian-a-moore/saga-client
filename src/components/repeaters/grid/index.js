@@ -46,11 +46,11 @@ const Item = ({ item, type, onSelect, setOpen }) => {
         setOpen();
     }
     return(
-        <div className='grid-item' onClick={() => handler(item)}>
-            <div className='img-container' alt={item.title}>
-                {imageRenderer()}
+        <div className={`grid-item ${type === 'color' ? 'sm' : null}`} onClick={() => handler(item)}>
+            <div className='img-container' alt={item.title || item}>
+                { type !== 'color' ? imageRenderer() : <div className='swatch' style={{ backgroundColor: item }} />}
             </div>
-            <span className='title'> { item.title } </span>
+            { type !== 'color' ? <span className='title'> { item.title } </span> : null }
         </div>
     );
 };

@@ -1,10 +1,10 @@
-.picker-container {
+.grid-picker {
     float: left;
     width: 100%;
     min-width: 320px;
 }
 
-.picker-container .picker {
+.grid-picker .picker {
     float: left;
     width: 100%;
     height: 40px;
@@ -13,7 +13,7 @@
     overflow: hidden;
 }
 
-.picker-container .picker .img-container {
+.grid-picker .picker .img-container {
     float: left;
     width: 40px;
     height: 40px;
@@ -22,7 +22,7 @@
     justify-content: center;
 }
 
-.picker-container .picker .img-container img, .picker-container .picker .img-container span.font-text {
+.grid-picker .picker .img-container img, .grid-picker .picker .img-container span.font-text, .grid-picker .picker .img-container .swatch {
     width: 20px;
     height: 20px;
     line-height: 20px;
@@ -30,7 +30,12 @@
     text-align: center;
 }
 
-.picker-container .picker .title {
+.grid-picker .picker .img-container .swatch {
+    border-radius: 50%;
+    box-shadow: (--boxShadow);
+}
+
+.grid-picker .picker .title {
     float: left;
     width: calc(100% - 80px);
     height: 40px;
@@ -39,9 +44,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    user-select: none;
 }
 
-.picker-container .picker button {
+.grid-picker .picker button {
     float: right;
     width: 40px;
     height: 40px;
@@ -51,6 +57,16 @@
     cursor: pointer;
 }
 
-.picker-container .icon {
+.grid-picker .icon {
     opacity: 0.5;
+}
+
+.color-picker-wrapper {
+    background: white;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 999;
+    border-bottom-left-radius: 2.5px;
+    border-bottom-right-radius: 2.5px;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.3);
 }
