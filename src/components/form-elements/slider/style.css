@@ -1,0 +1,33 @@
+.slider-container {
+    float: left;
+    width: 100%;
+}
+
+.slider-container .pct-container {
+    float: left;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.slider-container .slider {
+    appearance: none;
+    background: rgba(0,0,0,0.2);
+    width: calc(100% - 40px);
+    height: 10px;
+    margin: 15px 0;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.slider-container .slider::-webkit-slider-thumb {
+    appearance: none;
+    background: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+}

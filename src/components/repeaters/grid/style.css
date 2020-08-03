@@ -18,8 +18,8 @@
 }
 
 .grid .grid-item.sm {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
 }
 
 .grid .grid-item:hover {
@@ -37,7 +37,7 @@
 }
 
 .grid .grid-item.sm .img-container {
-    height: 40px;
+    height: 32px;
 }
 
 .grid .grid-item .img-container img {
@@ -47,8 +47,8 @@
 }
 
 .grid .grid-item.sm .img-container img {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
 }
 
 .grid .grid-item .img-container span.font-text {
@@ -60,12 +60,12 @@
 }
 
 .grid .grid-item .img-container .swatch {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
 }
 
 .grid .grid-item .img-container .swatch:hover {
-    transform: scale(1.2);
+    transform: scale(1.25);
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     border: 1px solid white;
 }

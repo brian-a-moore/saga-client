@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import List from '../containers/list';
-import Portal from '../containers/portal';
+import Grid from '../../repeaters/grid';
+import Portal from '../../containers/portal';
 import { MdCropSquare, MdRemoveCircle } from 'react-icons/md';
 import './style.css';
 
@@ -12,10 +12,10 @@ const GridPicker = ({ type, defaultValue, data, onSelect }) => {
 
     const imageRenderer = () => {
         switch(type) {
-            case 'color': return <span className='swatch' style={{ background: selection }}></span>
+            case 'color': return <span className='swatch' style={{ background: selection.hex }}></span>
             case 'font': return <span className='font-text' style={{ fontFamily: selection.title }}> Aa </span>;
             case 'mood':
-            case 'texture': return selection.id !== 'none' ? <img src={ require(`../../static/${type}s/${selection.raw.toLowerCase()}.png`) } alt={selection.title} /> : null;
+            case 'texture': return selection.id !== 'none' ? <img src={ require(`../../../static/${type}s/${selection.raw.toLowerCase()}.png`) } alt={selection.title} /> : null;
             default: return null;
         }
     }
@@ -51,18 +51,13 @@ const GridPicker = ({ type, defaultValue, data, onSelect }) => {
                     <div className='img-container'>
                         { selection ? imageRenderer() : <MdCropSquare className='icon' /> }
                     </div>
-                    { type !== 'color' ?
-                        <span className='title'> { selection ? selection.title : `Select ${type.slice(0, 1).toUpperCase() + type.slice(1, type.length)}` } </span>
-                        :
-                        <span className='title'> { selection || `Select Color` } </span> 
-                    }
-                    
+                    <span className='title'> { selection ? selection.title : `Select ${type.slice(0, 1).toUpperCase() + type.slice(1, type.length)}` } </span>
                 </div>
                 <button onClick={() => trigger(null)}> <MdRemoveCircle className='icon' /> </button>
             </div>
             { open ? 
                 <Portal>
-                    <List items={data} type={type} onSelect={trigger} setOpen={setOpen} coords={coords} />
+                    <Grid items={data} type={type} onSelect={trigger} setOpen={setOpen} coords={coords} />
                 </Portal>
             : null }
         </div>

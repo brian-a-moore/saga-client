@@ -48,7 +48,7 @@ const Item = ({ item, type, onSelect, setOpen }) => {
     return(
         <div className={`grid-item ${type === 'color' ? 'sm' : null}`} onClick={() => handler(item)}>
             <div className='img-container' alt={item.title || item}>
-                { type !== 'color' ? imageRenderer() : <div className='swatch' style={{ backgroundColor: item }} />}
+                { type !== 'color' ? imageRenderer() : <div className='swatch' style={{ backgroundColor: item.hex }} alt={item.title} />}
             </div>
             { type !== 'color' ? <span className='title'> { item.title } </span> : null }
         </div>
