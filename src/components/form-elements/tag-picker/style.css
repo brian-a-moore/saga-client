@@ -1,5 +1,5 @@
 .tag-picker {
+    background: red;
     float: left;
     width: 100%;
-    min-width: 320px;
-}
+};

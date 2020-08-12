@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Grid from '../../repeaters/grid';
+import Grid from './grid';
 import Portal from '../../containers/portal';
 import { MdCropSquare, MdRemoveCircle } from 'react-icons/md';
 import './style.css';

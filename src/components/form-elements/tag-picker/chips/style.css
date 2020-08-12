@@ -1,0 +1,28 @@
+.tags-list {
+    float: left;
+    width: 100%;
+    background: blue;
+}
+
+.tags-list .chip {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin: 0 8px 8px 0;
+    background: orange;
+}
+
+.tags-list .chip span {
+    float: left;
+    width: calc(100% - 20px);
+    padding: 0 8px;
+}
+
+.tags-list .chip button {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 0; padding: 0;
+    border: none;
+    outline: none;
+}

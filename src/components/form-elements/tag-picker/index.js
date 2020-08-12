@@ -1,63 +1,70 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Portal from '../../containers/portal';
-import List from '../../repeaters/list';
-import { MdClose } from 'react-icons/md';
+import Chips from './chips';
+import Suggestions from './suggestions';
 import './style.css';
 
-const TagPicker = ({ value, defaultValue, tags, updateTags }) => {
+const TagPicker = ({ defaultTags, availableTags }) => {
     const thisPicker = useRef(null);
     const thisInput = useRef(null);
 
-    // Typed text / Filtered List
+    // Text
     const [ text, setText ] = useState('');
-    const [ filteredList, setFilteredList ] = useState([]);
-    
-    useEffect(() => {
-        if(text.length) {
-            setOpen(true);
-            let list = [];
-            for(let x in tags) {
-                if(tags[x].title.toLowerCase().includes(text.toLowerCase())) list.push(tags[x]);
-            }
-            setFilteredList(list);
-        } else {
-            setOpen(false);
-            setFilteredList([])
-        }
-    }, [ tags, text ]);
 
-    // Managing Tags
-    const [ selectedTags, setSelectedTags ] = useState(value || defaultValue);
-
-    const getIds = useCallback(() => {
-        let ids = [];
-        for(let x in selectedTags) {
-            ids.push(selectedTags[x].id);
-        }
-
-        return ids;
-    }, [ selectedTags ]);
+    // Selected Tags
+    const [ selectedTags, setSelectedTags ] = useState(defaultTags || []);
+    const [ tempId, setTempId ] = useState(-1);
 
     const addTag = useCallback(tag => {
-        let ids = getIds();
-        if(!ids.includes(tag.id)) setSelectedTags([ ...selectedTags, tag ]);
-    }, [ selectedTags, getIds ]);
+        let text = typeof tag === 'object' ? tag.title : tag;
+        const filteredAvailableTags = availableTags.reduce((acc, tag) => {
+            if(tag.title.toLowerCase().includes(text)) acc.push(tag);
+            return acc;
+        }, []);
+        const filteredSelectedTags = selectedTags.reduce((acc, tag) => {
+            if(tag.title.toLowerCase().includes(text)) acc.push(tag);
+            return acc;
+        }, []);
+
+        if(!filteredAvailableTags.length && !filteredSelectedTags.length) {
+            setSelectedTags([ ...selectedTags, { id: tempId, title: text }]);
+            setTempId(tempId - 1);
+        }
+        if (filteredAvailableTags.length && !filteredSelectedTags.length) {
+            setSelectedTags([ ...selectedTags, filteredAvailableTags[0] ]);
+        }
+        clearEverything();
+    }, [ availableTags, selectedTags, tempId, setTempId ]);
 
     const removeTag = tag => {
-        let ids = getIds();
-        if(ids.includes(tag.id)) setSelectedTags([ ...selectedTags].filter(t => (t.id !== tag.id)));
+        const newTags = selectedTags.filter(t => (t.id !== tag.id));
+        setSelectedTags(newTags);
     }
 
-    useEffect(() => {
-        updateTags(selectedTags);
-    }, [ updateTags, selectedTags ]);
+    //Handle Enter
+    const handleEnter = e =>  {
+        if(e.keyCode === 13 || e.which === 13) addTag(thisInput.current.value);
+    };
 
-    // Toggling dropdown menu
-    const [ open, setOpen ] = useState(false);
+    // Filtered Tag List
+    const [ filteredTags, setFilteredTags ] = useState([]);
 
     useEffect(() => {
-        if(open) getCoordinates(thisPicker);
-    }, [ open ]);
+        const titles = [];
+        for(let x in selectedTags) titles.push(selectedTags[x].title.toLowerCase());
+        const preFilteredTags = availableTags.filter(tag => (!titles.includes(tag.title.toLowerCase())));
+
+        if(text.length) {
+            let matchingTags = preFilteredTags.filter(tag => (
+                tag.title.toLowerCase().includes(text.toLowerCase())
+            ));
+            setFilteredTags(matchingTags);
+        } else setFilteredTags([]);
+    }, [ text, availableTags, selectedTags ]);
+
+    useEffect(() => {
+        if(filteredTags.length) getCoordinates(thisInput);
+    }, [ filteredTags ])
 
     // Handling Coordinates
     const [ coords, setCoords ] = useState(null);
@@ -65,61 +72,39 @@ const TagPicker = ({ value, defaultValue, tags, updateTags }) => {
     const getCoordinates = ({ current }) => { 
         if(current) {
             const rect = current.getBoundingClientRect();
-            setCoords({
-                left: rect.x,
-                top: rect.y + window.scrollY + 40
+            setCoords({ left: rect.x, top: rect.y + window.scrollY + 40
             });
         }
     }
-
     useEffect(() => {
         window.addEventListener('resize', () => getCoordinates(thisPicker));
         return () => window.removeEventListener('resize', () => getCoordinates(thisPicker));
     }, []);
 
-    // Handle Enter
-    const handleEnter = useCallback(e =>  {
-        if(e.keyCode === 13 && text) {
-            if(filteredList.length) addTag(filteredList[0]);
-            else addTag({
-                id: Math.random(),
-                title: text
-            });
-            setText('');
-            setOpen(false);
-        }
-    }, [ addTag, text, filteredList ]);
-
-    useEffect(() => {
-        let el = thisInput.current;
-        el.addEventListener('keyup', e => handleEnter(e));
-        return () => el.removeEventListener('keyup', e => handleEnter(e));
-    }, [ handleEnter ]);
+    // Clear Everything
+    const clearEverything = () => {
+        setText('');
+        setFilteredTags([]);
+    }
 
     return(
         <div className='tag-picker' ref={thisPicker}>
-            <input type='text' value={text} onChange={e => setText(e.target.value)} ref={thisInput} />
-            <div className='selected-tags'>
-                {selectedTags.map(tag => (
-                    <Tag tag={tag} key={tag.id} removeTag={removeTag} />
-                ))}
-            </div>
-            { open ? 
-                <Portal>
-                    <List text={text} items={filteredList} onSelect={addTag} setOpen={setOpen} coords={coords} />
-                </Portal>
-            : null }
-        </div>
-    );
-};
-
-const Tag = ({ tag, removeTag }) => {
-    return(
-        <div className='tag'>
-            <span> {tag.title} </span>
-            <button onClick={() => removeTag(tag)}>
-                <MdClose />
-            </button>
+            <input
+                type='text'
+                ref={thisInput}
+                value={text}
+                onChange={e => setText(e.target.value)}
+                onKeyPress={e => handleEnter(e)}
+                placeholder='Type a tag...' />
+            <Chips tags={selectedTags} removeTag={removeTag} />
+            <Portal>
+                <Suggestions
+                    coords={coords}
+                    tags={filteredTags}
+                    text={text}
+                    onSelect={addTag}
+                    clearEverything={clearEverything} />
+            </Portal>
         </div>
     );
 };

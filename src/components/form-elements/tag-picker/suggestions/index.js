@@ -1,22 +1,22 @@
 import React, { useEffect, useRef } from 'react';
 import './style.css';
 
-const List = ({ items, text, onSelect, setOpen, coords }) => {
+const Suggestions = ({ tags, text, onSelect, coords, clearEverything }) => {
     const thisList = useRef(null);
 
     useEffect(() => {
         const isClickInside = e => {
             if(thisList.current) {
                 let inside = thisList.current.contains(e.target);
-                if(!inside) setOpen(false);
+                if(!inside) clearEverything();
             }
         };
 
         document.addEventListener('click', e => isClickInside(e));
         return () => document.removeEventListener('click', e => isClickInside(e));
-    }, [ setOpen ]);
+    }, [ clearEverything ]);
 
-    if(!items || !onSelect || !coords) return null;
+    if(!tags || !onSelect || !coords) return null;
     const { top, left } = coords;
 
     const handleSubString = str => {
@@ -31,24 +31,19 @@ const List = ({ items, text, onSelect, setOpen, coords }) => {
         } 
     }
 
-    const handleClick = item => {
-        onSelect(item);
-        setOpen(false);
-    }
-
     return(
         <div ref={thisList} className='list' style={{ top, left }}>
-            {items.map(item => {
-                const string = handleSubString(item.title);
+            {tags.map(tag => {
+                const string = handleSubString(tag.title);
             return(
-                <span onClick={() => handleClick(item)} key={item.id}> 
+                <span onClick={() => onSelect(tag.title)} key={tag.id}> 
                     {string.start}<strong>{string.highlight}</strong>{string.end}
                 </span>
             );
             })}
-            {text.length && !items.length ? <span> Add tag "{text}" </span> : null }
+            {text.length && !tags.length ? <span onClick={() => onSelect(text)}> Add tag "{text}" </span> : null }
         </div>
     );
 };
 
-export default List;
+export default Suggestions;

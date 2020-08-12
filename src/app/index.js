@@ -38,7 +38,7 @@ const App = () => {
                 <GridPicker data={textures} defaultValue={texture} type='texture' onSelect={setTexture} />
                 <Slider value={textureOpacity} defaultValue={textureOpacity} onChange={setTextureOpacity} />
                 <CheckBox title='Set as Default' value={isDefault} defaultValue={isDefault} onChange={setIsDefault} />
-                <TagPicker value={tags} defaultValue={tags} tags={fakeTags} updateTags={setTags} />
+                <TagPicker defaultTags={tags} availableTags={fakeTags} updateTags={setTags} />
             </Modal>
         </div>
     );

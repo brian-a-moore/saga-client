@@ -37,7 +37,7 @@ const Item = ({ item, type, onSelect, setOpen }) => {
         switch(type) {
             case 'font': return <span className='font-text' style={{ fontFamily: item.title }}> Aa </span>;
             case 'mood':
-            case 'texture': return item.id !== 'none' ? <img src={ require(`../../../static/${type}s/${item.raw.toLowerCase()}.png`) } alt={item.title} /> : null;
+            case 'texture': return item.id !== 'none' ? <img src={ require(`../../../../static/${type}s/${item.raw.toLowerCase()}.png`) } alt={item.title} /> : null;
             default: return null;
         }
     }
