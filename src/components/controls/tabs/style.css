@@ -1,5 +1,5 @@
 .tabs {
-    background: white;
+    background: var(--background);
     position: relative;
     float: left;
     width: 100%;
@@ -17,7 +17,7 @@
 }
 
 .tabs button.active-tab {
-    color: red;
+    color: var(--primaryColor);
     font-weight: bold;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .tabs .active-bar {
-    background: red;
+    background: var(--primaryColor);
     position: absolute;
     bottom: 0;
     height: 3px;

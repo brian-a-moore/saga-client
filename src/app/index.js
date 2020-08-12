@@ -6,7 +6,7 @@ import CheckBox from '../components/form-elements/check-box';
 import { colors, fonts, moods, textures } from '../data';
 import Tabs from '../components/controls/tabs';
 import { Picker as TagPicker, Chips } from '../components/form-elements/tags';
-import './style.css';
+import './style.css'; 
 
 const fakeTags = [
     { id: 1, title: 'One' },
@@ -18,7 +18,10 @@ const fakeTags = [
 
 const filteredColors = colors.filter(color => (!color.id.includes('-a')));
 
+
 const App = () => {
+    const [ theme, setTheme ] = useState('blue-500');
+    const [ mode, setMode ] = useState('light');
     const [ backgroundColor, setBackgroundColor ] = useState(null);
     const [ color, setColor ] = useState(null);
     const [ font, setFont ] = useState(null);
@@ -28,9 +31,14 @@ const App = () => {
     const [ isDefault, setIsDefault ] = useState(false);
     const [ tags, setTags ] = useState([]);
     return(
-        <div className='app'> 
+        <div className={`app`} style={{ '--primaryColor': colors.find(color => color.id === theme).hex }}> 
             <Modal>
                 <Tabs tabs={['Joy', 'Brian']} />
+                <select defaultValue={mode} onChange={e => setMode(e.target.value)}>
+                    <option value='light'> Light Mode </option>
+                    <option value='dark'> Dark Mode </option>
+                </select>
+                <GridPicker data={filteredColors} defaultValue={colors.find(color => color.id === theme)} type='color' onSelect={setTheme} />
                 <GridPicker data={filteredColors} defaultValue={backgroundColor} type='color' onSelect={setBackgroundColor} />
                 <GridPicker data={filteredColors} defaultValue={color} type='color' onSelect={setColor} />
                 <GridPicker data={fonts} defaultValue={font} type='font' onSelect={setFont} />

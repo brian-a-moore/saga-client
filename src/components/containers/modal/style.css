@@ -11,7 +11,7 @@
 }
 
 .modal .container {
-    background: #fff;
+    background: var(--background);
     width: 100%;
     max-width: 1000px;
     box-shadow: 0 0 40px rgba(0,0,0,0.3);

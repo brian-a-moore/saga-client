@@ -5,14 +5,14 @@ import { createPortal } from 'react-dom';
     Used to display pop-ups outside of the React tree
 */
 
-const Portal = ({ children }) => {
-    const mount = document.body;
-    const el = document.createElement('div');
+const root = document.getElementById('app-root');
 
+const Portal = ({ children, mode, theme }) => {
+    const el = document.createElement('div');
     useEffect(() => {
-        mount.appendChild(el);
-        return () => mount.removeChild(el);
-    }, [ el, mount ]);
+        root.appendChild(el);
+        return () => root.removeChild(el);
+    }, [ el ]);
 
     return createPortal(children, el);
 };

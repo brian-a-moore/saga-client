@@ -1,5 +1,5 @@
 .list {
-    background: white;
+    background: var(--backgroundPopUp);
     position: absolute;
     width: 320px;
     overflow: scroll;
@@ -10,6 +10,7 @@
 }
 
 .list span {
+    background: var(--background);
     float: left;
     width: 100%;
     height: 40px;

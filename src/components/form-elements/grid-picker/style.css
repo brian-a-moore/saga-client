@@ -59,6 +59,7 @@
 }
 
 .grid-picker .icon {
+    color: var(--primaryColor);
     opacity: 0.5;
 }
 
