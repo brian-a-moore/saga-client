@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import Portal from '../../containers/portal';
-import Chips from './chips';
-import Suggestions from './suggestions';
+import Portal from '../../../containers/portal';
+import Chips from '../chips';
+import Suggestions from '../suggestions';
 import './style.css';
 
-const TagPicker = ({ defaultTags, availableTags }) => {
+const Picker = ({ defaultTags, availableTags }) => {
     const thisPicker = useRef(null);
     const thisInput = useRef(null);
 
@@ -16,22 +16,30 @@ const TagPicker = ({ defaultTags, availableTags }) => {
     const [ tempId, setTempId ] = useState(-1);
 
     const addTag = useCallback(tag => {
-        let text = typeof tag === 'object' ? tag.title : tag;
-        const filteredAvailableTags = availableTags.reduce((acc, tag) => {
-            if(tag.title.toLowerCase().includes(text)) acc.push(tag);
-            return acc;
-        }, []);
-        const filteredSelectedTags = selectedTags.reduce((acc, tag) => {
-            if(tag.title.toLowerCase().includes(text)) acc.push(tag);
-            return acc;
-        }, []);
+        let text = typeof tag === 'object' ? tag.title.trim() : tag.trim();
 
-        if(!filteredAvailableTags.length && !filteredSelectedTags.length) {
-            setSelectedTags([ ...selectedTags, { id: tempId, title: text }]);
-            setTempId(tempId - 1);
-        }
-        if (filteredAvailableTags.length && !filteredSelectedTags.length) {
-            setSelectedTags([ ...selectedTags, filteredAvailableTags[0] ]);
+        if(text.length) {
+            const filteredAvailableTags = availableTags.reduce((acc, tag) => {
+                if(tag.title.toLowerCase() === text.toLowerCase()) acc.push(tag);
+                return acc;
+            }, []);
+            const filteredSelectedTags = selectedTags.reduce((acc, tag) => {
+                if(tag.title.toLowerCase() === text.toLowerCase()) acc.push(tag);
+                return acc;
+            }, []);
+            const findTag = () => {
+                return availableTags.find(tag => (
+                    tag.title.toLowerCase() === text.toLowerCase()
+                ));
+            }
+    
+            if(!filteredAvailableTags.length && !filteredSelectedTags.length) {
+                setSelectedTags([ ...selectedTags, { id: tempId, title: text }]);
+                setTempId(tempId - 1);
+            }
+            if (filteredAvailableTags.length && !filteredSelectedTags.length) {
+                setSelectedTags([ ...selectedTags, findTag() ]);
+            }
         }
         clearEverything();
     }, [ availableTags, selectedTags, tempId, setTempId ]);
@@ -40,11 +48,6 @@ const TagPicker = ({ defaultTags, availableTags }) => {
         const newTags = selectedTags.filter(t => (t.id !== tag.id));
         setSelectedTags(newTags);
     }
-
-    //Handle Enter
-    const handleEnter = e =>  {
-        if(e.keyCode === 13 || e.which === 13) addTag(thisInput.current.value);
-    };
 
     // Filtered Tag List
     const [ filteredTags, setFilteredTags ] = useState([]);
@@ -81,6 +84,17 @@ const TagPicker = ({ defaultTags, availableTags }) => {
         return () => window.removeEventListener('resize', () => getCoordinates(thisPicker));
     }, []);
 
+        //Handle Enter
+    const handleEnter = e =>  {
+        if(e.keyCode === 13 || e.which === 13) {
+            if(filteredTags.length) {
+                addTag(filteredTags[0].title);
+            } else {
+                addTag(thisInput.current.value)
+            }
+        };
+    };
+
     // Clear Everything
     const clearEverything = () => {
         setText('');
@@ -109,4 +123,4 @@ const TagPicker = ({ defaultTags, availableTags }) => {
     );
 };
 
-export default TagPicker;
+export default Picker;

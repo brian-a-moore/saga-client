@@ -8,9 +8,11 @@ const Chips = ({ tags, removeTag }) => {
             { tags.map(tag => (
                 <div className='chip' key={tag.id}>
                      <span> {tag.title} </span>
-                    <button onClick={() => removeTag(tag)}>
-                        <MdClose />
-                    </button>           
+                    { removeTag ? 
+                        <button onClick={() => removeTag(tag)}>
+                            <MdClose />
+                        </button>
+                     : null }
                 </div>
             ))}
         </div>

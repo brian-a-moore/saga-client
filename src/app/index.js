@@ -3,9 +3,9 @@ import Modal from '../components/containers/modal';
 import GridPicker from '../components/form-elements/grid-picker';
 import Slider from '../components/form-elements/slider';
 import CheckBox from '../components/form-elements/check-box';
-import TagPicker from '../components/form-elements/tag-picker';
 import { colors, fonts, moods, textures } from '../data';
 import Tabs from '../components/controls/tabs';
+import { Picker as TagPicker, Chips } from '../components/form-elements/tags';
 import './style.css';
 
 const fakeTags = [
@@ -39,6 +39,7 @@ const App = () => {
                 <Slider value={textureOpacity} defaultValue={textureOpacity} onChange={setTextureOpacity} />
                 <CheckBox title='Set as Default' value={isDefault} defaultValue={isDefault} onChange={setIsDefault} />
                 <TagPicker defaultTags={tags} availableTags={fakeTags} updateTags={setTags} />
+                <Chips tags={fakeTags} />
             </Modal>
         </div>
     );

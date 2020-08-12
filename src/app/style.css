@@ -66,6 +66,7 @@ input, select, .picker {
 	margin: 0 0 16px 0;
 	padding: 0 16px;
 	cursor: pointer;
+	outline: none;
 	box-shadow: var(--boxShadow);
 	border: var(--border);
 }
