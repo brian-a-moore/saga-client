@@ -1,88 +1,94 @@
-import React, { useRef, useEffect } from "react";
-import "./style.css";
+import React, { useRef, useEffect } from 'react';
+import './style.css';
 
 /*
     Used to display image/title pairs in pop-up menus.
 */
 
 const Grid = ({ items, type, onSelect, setOpen, coords }) => {
-  const thisGrid = useRef(null);
+    const thisGrid = useRef(null);
 
-  useEffect(() => {
-    const isClickInside = (e) => {
-      if (thisGrid.current) {
-        let inside = thisGrid.current.contains(e.target);
-        if (!inside) setOpen(false);
-      }
-    };
+    useEffect(() => {
+        const isClickInside = (e) => {
+            if (thisGrid.current) {
+                let inside = thisGrid.current.contains(e.target);
+                if (!inside) setOpen(false);
+            }
+        };
 
-    document.addEventListener("click", (e) => isClickInside(e));
-    return () => document.removeEventListener("click", (e) => isClickInside(e));
-  }, [setOpen]);
+        document.addEventListener('click', (e) => isClickInside(e));
+        return () =>
+            document.removeEventListener('click', (e) => isClickInside(e));
+    }, [setOpen]);
 
-  if (!items || !type || !onSelect || !coords) return null;
-  const { top, left } = coords;
+    if (!items || !type || !onSelect || !coords) return null;
+    const { top, left } = coords;
 
-  return (
-    <div ref={thisGrid} className="grid" style={{ top, left }}>
-      {items.map((d, i) => (
-        <Item
-          item={d}
-          key={d.id}
-          type={type}
-          onSelect={onSelect}
-          setOpen={setOpen}
-        />
-      ))}
-    </div>
-  );
+    return (
+        <div ref={thisGrid} className="grid" style={{ top, left }}>
+            {items.map((d, i) => (
+                <Item
+                    item={d}
+                    key={d.id}
+                    type={type}
+                    onSelect={onSelect}
+                    setOpen={setOpen}
+                />
+            ))}
+        </div>
+    );
 };
 
 const Item = ({ item, type, onSelect, setOpen }) => {
-  const imageRenderer = () => {
-    switch (type) {
-      case "font":
-        return (
-          <span className="font-text" style={{ fontFamily: item.title }}>
-            {" "}
-            Aa{" "}
-          </span>
-        );
-      case "mood":
-      case "texture":
-        return item.id !== "none" ? (
-          <img
-            src={require(`../../../../static/${type}s/${item.raw.toLowerCase()}.png`)}
-            alt={item.title}
-          />
-        ) : null;
-      default:
-        return null;
-    }
-  };
-  const handler = (item) => {
-    onSelect(item);
-    setOpen();
-  };
-  return (
-    <div
-      className={`grid-item ${type === "color" ? "sm" : null}`}
-      onClick={() => handler(item)}
-    >
-      <div className="img-container" alt={item.title || item}>
-        {type !== "color" ? (
-          imageRenderer()
-        ) : (
-          <div
-            className="swatch"
-            style={{ backgroundColor: item.hex }}
-            alt={item.title}
-          />
-        )}
-      </div>
-      {type !== "color" ? <span className="title"> {item.title} </span> : null}
-    </div>
-  );
+    const imageRenderer = () => {
+        switch (type) {
+            case 'font':
+                return (
+                    <span
+                        className="font-text"
+                        style={{ fontFamily: item.title }}
+                    >
+                        {' '}
+                        Aa{' '}
+                    </span>
+                );
+            case 'mood':
+            case 'texture':
+                return item.id !== 'none' ? (
+                    <img
+                        src={require(`../../../../static/${type}s/${item.raw.toLowerCase()}.png`)}
+                        alt={item.title}
+                    />
+                ) : null;
+            default:
+                return null;
+        }
+    };
+    const handler = (item) => {
+        onSelect(item);
+        setOpen();
+    };
+    return (
+        <div
+            className={`grid-item ${type === 'color' ? 'sm' : null}`}
+            onClick={() => handler(item)}
+        >
+            <div className="img-container" alt={item.title || item}>
+                {type !== 'color' ? (
+                    imageRenderer()
+                ) : (
+                    <div
+                        className="swatch"
+                        style={{ backgroundColor: item.hex }}
+                        alt={item.title}
+                    />
+                )}
+            </div>
+            {type !== 'color' ? (
+                <span className="title"> {item.title} </span>
+            ) : null}
+        </div>
+    );
 };
 
 export default Grid;

@@ -1,5 +1,3 @@
-import dateMap from "./dateMap";
+import dateMap from './dateMap';
 
-export default {
-  dateMap,
-};
+export { dateMap };

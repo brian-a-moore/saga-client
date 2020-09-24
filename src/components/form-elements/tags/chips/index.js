@@ -1,6 +1,6 @@
-import React from "react";
-import { MdClose } from "react-icons/md";
-import "./style.css";
+import React from 'react';
+import { MdClose } from 'react-icons/md';
+import './style.css';
 
 /*
 USE CASE:
@@ -16,20 +16,20 @@ const fakeTags = [
 */
 
 const Chips = ({ tags, removeTag }) => {
-  return (
-    <div className="tags-list">
-      {tags.map((tag) => (
-        <div className="chip" key={tag.id}>
-          <span> {tag.title} </span>
-          {removeTag ? (
-            <button onClick={() => removeTag(tag)}>
-              <MdClose />
-            </button>
-          ) : null}
+    return (
+        <div className="tags-list">
+            {tags.map((tag) => (
+                <div className="chip" key={tag.id}>
+                    <span> {tag.title} </span>
+                    {removeTag ? (
+                        <button onClick={() => removeTag(tag)}>
+                            <MdClose />
+                        </button>
+                    ) : null}
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 };
 
 export default Chips;

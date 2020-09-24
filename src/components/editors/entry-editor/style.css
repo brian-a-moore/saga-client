@@ -6,7 +6,7 @@
     overflow: scroll;
 }
 
-.entry-editor  textarea {
+.entry-editor textarea {
     float: left;
     width: 100%;
     resize: none;

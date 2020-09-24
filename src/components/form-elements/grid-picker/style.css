@@ -22,7 +22,9 @@
     justify-content: center;
 }
 
-.grid-picker .picker .img-container img, .grid-picker .picker .img-container span.font-text, .grid-picker .picker .img-container .swatch {
+.grid-picker .picker .img-container img,
+.grid-picker .picker .img-container span.font-text,
+.grid-picker .picker .img-container .swatch {
     width: 20px;
     height: 20px;
     line-height: 20px;
@@ -31,7 +33,7 @@
 }
 
 .grid-picker .picker .img-container .swatch {
-    border: 1px solid rgba(0,0,0,0.3);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 50%;
     box-shadow: (--boxShadow);
 }
@@ -52,7 +54,8 @@
     float: right;
     width: 40px;
     height: 40px;
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     border: none;
     outline: none;
     cursor: pointer;
@@ -66,9 +69,10 @@
 .color-picker-wrapper {
     background: white;
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     z-index: 999;
     border-bottom-left-radius: 2.5px;
     border-bottom-right-radius: 2.5px;
-    box-shadow: 0 10px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
 }

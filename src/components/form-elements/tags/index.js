@@ -7,8 +7,4 @@ import Suggestions from './suggestions';
  * "Picker" depends on both Chips and Suggestions
  */
 
-export {
-    Chips,
-    Picker,
-    Suggestions
-};
+export { Chips, Picker, Suggestions };
