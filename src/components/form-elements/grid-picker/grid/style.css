@@ -1,86 +1,85 @@
 .grid {
-
-    position: absolute;
-    width: 320px;
-    height: 300px;
-    overflow: scroll;
-    z-index: 999;
-    border-bottom-left-radius: 2.5px;
-    border-bottom-right-radius: 2.5px;
-    box-shadow: 0 10px 10px rgba(0,0,0,0.3);
+  background: white;
+  position: absolute;
+  width: 320px;
+  height: 300px;
+  overflow: scroll;
+  z-index: 999;
+  border-bottom-left-radius: 2.5px;
+  border-bottom-right-radius: 2.5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
 }
 
 .grid .grid-item {
-    background: var(--background);
-    float: left;
-    width: 80px;
-    height: 70px;
-    user-select: none;
+  float: left;
+  width: 80px;
+  height: 70px;
+  user-select: none;
 }
 
 .grid .grid-item.sm {
-    float: right;
-    width: 32px;
-    height: 32px;
+  float: right;
+  width: 32px;
+  height: 32px;
 }
 
 .grid .grid-item:hover {
-    background: rgba(0,0,0,0.1);
-    cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .grid .grid-item .img-container {
-    float: left;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  float: left;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .grid .grid-item.sm .img-container {
-    height: 32px;
+  height: 32px;
 }
 
 .grid .grid-item .img-container img {
-    width: 30px;
-    height: 30px;
-    overflow: hidden;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
 }
 
 .grid .grid-item.sm .img-container img {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .grid .grid-item .img-container span.font-text {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 18px;
-    text-align: center;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  text-align: center;
 }
 
 .grid .grid-item .img-container .swatch {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .grid .grid-item .img-container .swatch:hover {
-    transform: scale(1.25);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    border: 1px solid white;
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid white;
 }
 
 .grid .grid-item span.title {
-    float: left;
-    width: 80px;
-    height: 20px;
-    line-height: 20px;
-    padding: 0 8px;
-    font-size: 10px;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  float: left;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 8px;
+  font-size: 10px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

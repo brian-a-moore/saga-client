@@ -1,56 +1,32 @@
-import React, { useState } from 'react';
-import Modal from '../components/containers/modal';
-import GridPicker from '../components/form-elements/grid-picker';
-import Slider from '../components/form-elements/slider';
-import CheckBox from '../components/form-elements/check-box';
-import { colors, fonts, moods, textures } from '../data';
-import Tabs from '../components/controls/tabs';
-import { Picker as TagPicker, Chips } from '../components/form-elements/tags';
-import './style.css'; 
+import React, { useState } from "react";
+import Modal from "../components/containers/modal";
+import { colors } from "../data";
+import "./style.css";
 
-const fakeTags = [
-    { id: 1, title: 'One' },
-    { id: 2, title: 'Two' },
-    { id: 3, title: 'Three' },
-    { id: 4, title: 'Four' },
-    { id: 5, title: 'Five' },
-];
+const DEFAULT_THEME = "blue-500";
 
-const filteredColors = colors.filter(color => (!color.id.includes('-a')));
-
+const checkTheme = (theme, getHex) => {
+  if (getHex) {
+    if (theme) return colors.find((color) => color.id === theme).hex;
+    else return colors.find((color) => color.id === DEFAULT_THEME).hex;
+  } else {
+    if (theme) return colors.find((color) => color.id === theme);
+    else return colors.find((color) => color.id === DEFAULT_THEME);
+  }
+};
 
 const App = () => {
-    const [ theme, setTheme ] = useState('blue-500');
-    const [ mode, setMode ] = useState('light');
-    const [ backgroundColor, setBackgroundColor ] = useState(null);
-    const [ color, setColor ] = useState(null);
-    const [ font, setFont ] = useState(null);
-    const [ mood, setMood ] = useState(null);
-    const [ texture, setTexture ] = useState(null);
-    const [ textureOpacity, setTextureOpacity ] = useState(100);
-    const [ isDefault, setIsDefault ] = useState(false);
-    const [ tags, setTags ] = useState([]);
-    return(
-        <div className={`app`} style={{ '--primaryColor': colors.find(color => color.id === theme).hex }}> 
-            <Modal>
-                <Tabs tabs={['Joy', 'Brian']} />
-                <select defaultValue={mode} onChange={e => setMode(e.target.value)}>
-                    <option value='light'> Light Mode </option>
-                    <option value='dark'> Dark Mode </option>
-                </select>
-                <GridPicker data={filteredColors} defaultValue={colors.find(color => color.id === theme)} type='color' onSelect={setTheme} />
-                <GridPicker data={filteredColors} defaultValue={backgroundColor} type='color' onSelect={setBackgroundColor} />
-                <GridPicker data={filteredColors} defaultValue={color} type='color' onSelect={setColor} />
-                <GridPicker data={fonts} defaultValue={font} type='font' onSelect={setFont} />
-                <GridPicker data={moods} defaultValue={mood} type='mood' onSelect={setMood} />
-                <GridPicker data={textures} defaultValue={texture} type='texture' onSelect={setTexture} />
-                <Slider value={textureOpacity} defaultValue={textureOpacity} onChange={setTextureOpacity} />
-                <CheckBox title='Set as Default' value={isDefault} defaultValue={isDefault} onChange={setIsDefault} />
-                <TagPicker defaultTags={tags} availableTags={fakeTags} updateTags={setTags} />
-                <Chips tags={fakeTags} />
-            </Modal>
-        </div>
-    );
-}
+  const [theme, setTheme] = useState(null);
+  return (
+    <div
+      className={`app`}
+      style={{
+        "--primaryColor": checkTheme(theme, true),
+      }}
+    >
+      <Modal>@_@</Modal>
+    </div>
+  );
+};
 
 export default App;

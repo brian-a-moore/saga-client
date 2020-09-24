@@ -1,29 +1,31 @@
 .modal {
-    background: rgba(0,0,0,0.3);
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    padding: 32px;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 32px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal .container {
-    background: var(--background);
-    width: 100%;
-    max-width: 1000px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.3);
-    border-radius: 2.5px;
-    overflow: hidden;
+  background: white;
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+  border-radius: 2.5px;
+  overflow: hidden;
 }
 
 .modal .container h1 {
-    background: red;
-    height: 50px;
-    line-height: 50px;
-    font-size: 18px;
-    padding: 0 16px;
-    color: #fff;
+  background: red;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  padding: 0 16px;
+  color: #fff;
 }
